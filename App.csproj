@@ -7,8 +7,8 @@
     <ProjectGuid>{65DCE173-8145-4F6D-B4AE-74667E4D8BD6}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>orez.oansi</RootNamespace>
-    <AssemblyName>oansi</AssemblyName>
+    <RootNamespace>App</RootNamespace>
+    <AssemblyName>eansi</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -64,14 +64,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="data\oList.cs" />
-    <Compile Include="data\oMath.cs" />
-    <Compile Include="data\oVal.cs" />
-    <Compile Include="esc\oC0.cs" />
-    <Compile Include="esc\oC1.cs" />
-    <Compile Include="esc\oCsi.cs" />
-    <Compile Include="esc\oSgr.cs" />
-    <Compile Include="io\oCmd.cs" />
+    <Compile Include="data\ListExt.cs" />
+    <Compile Include="data\MathExt.cs" />
+    <Compile Include="data\ValExt.cs" />
+    <Compile Include="esc\C0.cs" />
+    <Compile Include="esc\C1.cs" />
+    <Compile Include="esc\Csi.cs" />
+    <Compile Include="esc\Sgr.cs" />
+    <Compile Include="io\Cmd.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -79,6 +79,8 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="LICENSE" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

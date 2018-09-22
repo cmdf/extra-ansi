@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using orez.oansi.data;
+using App.data;
 
-namespace orez.oansi.io {
-	class oCmd {
+namespace App.io {
+	class Cmd {
 
 		// static data
 		/// <summary>
@@ -32,14 +32,14 @@ namespace orez.oansi.io {
 		/// </summary>
 		public static int CursorLeft {
 			get { return Console.CursorLeft; }
-			set { Console.CursorLeft = oMath.Limit(value, 0, Console.BufferWidth); }
+			set { Console.CursorLeft = MathExt.Limit(value, 0, Console.BufferWidth); }
 		}
 		/// <summary>
 		/// Get or set cursor top wrt buffer.
 		/// </summary>
 		public static int CursorTop {
 			get { return Console.CursorTop; }
-			set { Console.CursorTop = oMath.Limit(value, 0, Console.BufferHeight); }
+			set { Console.CursorTop = MathExt.Limit(value, 0, Console.BufferHeight); }
 		}
 		/// <summary>
 		/// Get or set cursor left wrt window.
@@ -47,7 +47,7 @@ namespace orez.oansi.io {
 		public static int CursorWLeft {
 			get { return Console.CursorLeft - Console.WindowLeft; }
 			set {
-				int c = oMath.Limit(value, 0, Console.WindowWidth);
+				int c = MathExt.Limit(value, 0, Console.WindowWidth);
 				Console.CursorLeft = Console.WindowLeft + c;
 			}
 		}
@@ -57,7 +57,7 @@ namespace orez.oansi.io {
 		public static int CursorWTop {
 			get {	return Console.CursorTop - Console.WindowTop;	}
 			set {
-				int r = oMath.Limit(value, 0, Console.WindowHeight);
+				int r = MathExt.Limit(value, 0, Console.WindowHeight);
 				Console.CursorTop = Console.WindowTop + r;
 			}
 		}
@@ -67,7 +67,7 @@ namespace orez.oansi.io {
 		public static int WindowLeft {
 			get { return Console.WindowLeft; }
 			set {
-				int c = oMath.Limit(value, 0, Console.BufferWidth - Console.WindowWidth + 1);
+				int c = MathExt.Limit(value, 0, Console.BufferWidth - Console.WindowWidth + 1);
 				Console.WindowLeft = c;
 			}
 		}
@@ -77,7 +77,7 @@ namespace orez.oansi.io {
 		public static int WindowTop {
 			get { return Console.WindowTop; }
 			set {
-				int r = oMath.Limit(value, 0, Console.BufferHeight - Console.WindowHeight + 1);
+				int r = MathExt.Limit(value, 0, Console.BufferHeight - Console.WindowHeight + 1);
 				Console.WindowTop = r;
 			}
 		}
@@ -87,7 +87,7 @@ namespace orez.oansi.io {
 		public static int ForegroundColor {
 			get { return ClrNum[Console.ForegroundColor]; }
 			set {
-				int c = oMath.Limit(value, 0, 16);
+				int c = MathExt.Limit(value, 0, 16);
 				Console.ForegroundColor = NumClr[c];
 			}
 		}
@@ -97,7 +97,7 @@ namespace orez.oansi.io {
 		public static int BackgroundColor {
 			get { return ClrNum[Console.BackgroundColor]; }
 			set {
-				int c = oMath.Limit(value, 0, 16);
+				int c = MathExt.Limit(value, 0, 16);
 				Console.BackgroundColor = NumClr[c];
 			}
 		}

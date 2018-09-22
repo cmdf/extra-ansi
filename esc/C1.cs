@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using orez.oansi.io;
+using App.io;
 
-namespace orez.oansi.esc {
+namespace App.esc {
 	/// <summary>
 	/// C1 control character set.
 	/// </summary>
-	class oC1 {
+	class C1 {
 
 		// constant data
 		/// <summary>
@@ -151,9 +151,9 @@ namespace orez.oansi.esc {
 		/// <returns>-ve if end of stream, else +ve.</returns>
 		public static int Write(IList<string> a) {
 			int c = Console.Read();
-			if(c == NEL) return oCmd.Write('\n');
-			else if(c == SCI) return oCmd.Write(Console.Read());
-			else if(c == CSI) return oCsi.Write(a);
+			if(c == NEL) return Cmd.Write('\n');
+			else if(c == SCI) return Cmd.Write(Console.Read());
+			else if(c == CSI) return Csi.Write(a);
 			else if(c == RIS) Console.ResetColor();
 			return c;
 		}

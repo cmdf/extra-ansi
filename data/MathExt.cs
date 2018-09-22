@@ -1,7 +1,7 @@
 ﻿using System;
 
-namespace orez.oansi.data {
-	class oMath {
+namespace App.data {
+	class MathExt {
 
 		// static method
 		/// <summary>

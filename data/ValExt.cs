@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
-namespace orez.oansi.data {
-	class oVal {
+namespace App.data {
+	class ValExt {
 
 		// static method
 		/// <summary>

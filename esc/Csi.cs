@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
-using orez.oansi.data;
-using orez.oansi.io;
+using App.data;
+using App.io;
 
-namespace orez.oansi.esc {
+namespace App.esc {
 	/// <summary>
 	/// Control Sequence Introducer control character set.
 	/// </summary>
-	class oCsi {
+	class Csi {
 
 		// constant data
 		/// <summary>
@@ -142,8 +142,8 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">n.</param>
 		private static void Cuu(IList<string> a) {
-			int n = oVal.Int(a, 0, 1);
-			oCmd.CursorWTop -= n;
+			int n = ValExt.Int(a, 0, 1);
+			Cmd.CursorWTop -= n;
 		}
 
 		/// <summary>
@@ -151,8 +151,8 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">n.</param>
 		private static void Cud(IList<string> a) {
-			int n = oVal.Int(a, 0, 1);
-			oCmd.CursorWTop += n;
+			int n = ValExt.Int(a, 0, 1);
+			Cmd.CursorWTop += n;
 		}
 
 		/// <summary>
@@ -160,8 +160,8 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">n.</param>
 		private static void Cuf(IList<string> a) {
-			int n = oVal.Int(a, 0, 1);
-			oCmd.CursorWLeft += n;
+			int n = ValExt.Int(a, 0, 1);
+			Cmd.CursorWLeft += n;
 		}
 		
 		/// <summary>
@@ -169,8 +169,8 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">n.</param>
 		private static void Cub(IList<string> a) {
-			int n = oVal.Int(a, 0, 1);
-			oCmd.CursorWLeft -= n;
+			int n = ValExt.Int(a, 0, 1);
+			Cmd.CursorWLeft -= n;
 		}
 
 		/// <summary>
@@ -178,8 +178,8 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">n.</param>
 		private static void Cnl(IList<string> a) {
-			int n = oVal.Int(a, 0, 1);
-			oCmd.SetCursorPosition(0, oCmd.CursorTop + n);
+			int n = ValExt.Int(a, 0, 1);
+			Cmd.SetCursorPosition(0, Cmd.CursorTop + n);
 		}
 
 		/// <summary>
@@ -187,8 +187,8 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">n.</param>
 		private static void Cpl(IList<string> a) {
-			int n = oVal.Int(a, 0, 1);
-			oCmd.SetCursorPosition(0, oCmd.CursorTop - n);
+			int n = ValExt.Int(a, 0, 1);
+			Cmd.SetCursorPosition(0, Cmd.CursorTop - n);
 		}
 
 		/// <summary>
@@ -196,8 +196,8 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">c.</param>
 		private static void Cha(IList<string> a) {
-			int c = oVal.Int(a, 0, 1) - 1;
-			oCmd.CursorWLeft = c;
+			int c = ValExt.Int(a, 0, 1) - 1;
+			Cmd.CursorWLeft = c;
 		}
 
 		/// <summary>
@@ -205,9 +205,9 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">r,c.</param>
 		private static void Cup(IList<string> a) {
-			int r = oVal.Int(a, 0, 1) - 1;
-			int c = oVal.Int(a, 1, 1) - 1;
-			oCmd.SetCursorWPosition(c, r);
+			int r = ValExt.Int(a, 0, 1) - 1;
+			int c = ValExt.Int(a, 1, 1) - 1;
+			Cmd.SetCursorWPosition(c, r);
 		}
 
 		/// <summary>
@@ -215,9 +215,9 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">n.</param>
 		private static void Ed(IList<string> a) {
-			int n = oVal.Int(a, 0, 0);
-			if(n == 0) oCmd.WriteRange(Console.CursorLeft, Console.CursorTop, 0, Console.BufferHeight);
-			else if(n == 1) oCmd.WriteRange(0, 0, Console.CursorLeft, Console.CursorTop);
+			int n = ValExt.Int(a, 0, 0);
+			if(n == 0) Cmd.WriteRange(Console.CursorLeft, Console.CursorTop, 0, Console.BufferHeight);
+			else if(n == 1) Cmd.WriteRange(0, 0, Console.CursorLeft, Console.CursorTop);
 			else { Console.SetCursorPosition(0, 0);	Console.Clear(); }
 		}
 
@@ -226,10 +226,10 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">n.</param>
 		private static void El(IList<string> a) {
-			int n = oVal.Int(a, 0, 0);
-			if(n == 0) oCmd.WriteRange(Console.CursorLeft, Console.CursorTop, Console.BufferWidth, Console.CursorTop);
-			else if(n == 1) oCmd.WriteRange(0, Console.CursorTop, Console.CursorLeft, Console.CursorTop);
-			else oCmd.WriteRange(0, Console.CursorTop, 0, Console.CursorTop + 1);
+			int n = ValExt.Int(a, 0, 0);
+			if(n == 0) Cmd.WriteRange(Console.CursorLeft, Console.CursorTop, Console.BufferWidth, Console.CursorTop);
+			else if(n == 1) Cmd.WriteRange(0, Console.CursorTop, Console.CursorLeft, Console.CursorTop);
+			else Cmd.WriteRange(0, Console.CursorTop, 0, Console.CursorTop + 1);
 		}
 
 		/// <summary>
@@ -237,8 +237,8 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">n.</param>
 		private static void Su(IList<string> a) {
-			int n = oVal.Int(a, 0, 1);
-			oCmd.WindowTop -= n;
+			int n = ValExt.Int(a, 0, 1);
+			Cmd.WindowTop -= n;
 		}
 
 		/// <summary>
@@ -246,8 +246,8 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">n.</param>
 		private static void Sd(IList<string> a) {
-			int n = oVal.Int(a, 0, 1);
-			oCmd.WindowTop += n;
+			int n = ValExt.Int(a, 0, 1);
+			Cmd.WindowTop += n;
 		}
 
 		/// <summary>
@@ -263,7 +263,7 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">?.</param>
 		private static void Sgr(IList<string> a) {
-			oSgr.Write(a);
+      esc.Sgr.Write(a);
 		}
 
 		/// <summary>

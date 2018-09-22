@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace orez.oansi.data {
+namespace App.data {
 	/// <summary>
 	/// List operations.
 	/// </summary>
-	class oList {
+	class ListExt {
 
 		// static method
 		/// <summary>

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using orez.oansi.data;
-using orez.oansi.io;
+using App.data;
+using App.io;
 
-namespace orez.oansi.esc {
+namespace App.esc {
 	/// <summary>
 	/// Select Graphics Rendition.
 	/// </summary>
-	class oSgr {
+	class Sgr {
 
 		#region constant data
 		/// <summary>
@@ -241,7 +241,7 @@ namespace orez.oansi.esc {
 		/// <returns>0.</returns>
 		public static int Write(IList<string> a) {
 			while(a.Count > 0) {
-				int n = oVal.Int(a, 0, RST);
+				int n = ValExt.Int(a, 0, RST);
 				if(n == RST) Rst(a);
 				else if(n == BLD1) Bld1(a);
 				else if(n == BLD0) Bld0(a);
@@ -276,7 +276,7 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">.</param>
 		private static void Bld1(IList<string> a) {
-			oCmd.ForegroundColor = (FrClr | (Bld = 0x8)) & Lght;
+			Cmd.ForegroundColor = (FrClr | (Bld = 0x8)) & Lght;
 		}
 
 		/// <summary>
@@ -284,7 +284,7 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">.</param>
 		private static void Bld0(IList<string> a) {
-			oCmd.ForegroundColor = (FrClr | (Bld = 0x0)) & Lght;
+			Cmd.ForegroundColor = (FrClr | (Bld = 0x0)) & Lght;
 		}
 
 		/// <summary>
@@ -292,7 +292,7 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">.</param>
 		private static void Lght1(IList<string> a) {
-			oCmd.ForegroundColor = (FrClr | Bld) & (Lght = 0x7);
+			Cmd.ForegroundColor = (FrClr | Bld) & (Lght = 0x7);
 		}
 
 		/// <summary>
@@ -300,7 +300,7 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">.</param>
 		private static void Lght0(IList<string> a) {
-			oCmd.ForegroundColor = (FrClr | (Bld = 0x0)) & (Lght = 0x0F);
+			Cmd.ForegroundColor = (FrClr | (Bld = 0x0)) & (Lght = 0x0F);
 		}
 
 		/// <summary>
@@ -308,8 +308,8 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">clr.</param>
 		private static void FrClr1(IList<string> a) {
-			FrClr = oVal.Int(a, 0) - FRCLR1B;
-			oCmd.ForegroundColor = (FrClr | Bld) & Lght;
+			FrClr = ValExt.Int(a, 0) - FRCLR1B;
+			Cmd.ForegroundColor = (FrClr | Bld) & Lght;
 		}
 
 		/// <summary>
@@ -317,10 +317,10 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">2;r;g;b | 5;clr.</param>
 		private static void FrClr1Ex(IList<string> a) {
-			int n = oVal.Int(a, 1);
-			int FrClr = n == 2 ? oCmd.RgbColor(oVal.Int(a, 2), oVal.Int(a, 3), oVal.Int(a, 4)) : (oVal.Int(a, 1) & 0xF);
-			oCmd.ForegroundColor = (FrClr | Bld) & Lght;
-			oList.ShiftN(a, 4);
+			int n = ValExt.Int(a, 1);
+			int FrClr = n == 2 ? Cmd.RgbColor(ValExt.Int(a, 2), ValExt.Int(a, 3), ValExt.Int(a, 4)) : (ValExt.Int(a, 1) & 0xF);
+			Cmd.ForegroundColor = (FrClr | Bld) & Lght;
+			ListExt.ShiftN(a, 4);
 		}
 
 		/// <summary>
@@ -328,7 +328,7 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">.</param>
 		private static void FrClr0(IList<string> a) {
-			oCmd.ForegroundColor = ((FrClr = 7) | Bld) & Lght;
+			Cmd.ForegroundColor = ((FrClr = 7) | Bld) & Lght;
 		}
 
 		/// <summary>
@@ -336,8 +336,8 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">clr.</param>
 		private static void BckClr1(IList<string> a) {
-			int c = oVal.Int(a, 0) - BCKCLR1B;
-			oCmd.BackgroundColor = c;
+			int c = ValExt.Int(a, 0) - BCKCLR1B;
+			Cmd.BackgroundColor = c;
 		}
 
 		/// <summary>
@@ -345,10 +345,10 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">2;r;g;b | 5;clr.</param>
 		private static void BckClr1Ex(IList<string> a) {
-			int n = oVal.Int(a, 1);
-			int c = n == 2 ? oCmd.RgbColor(oVal.Int(a, 2), oVal.Int(a, 3), oVal.Int(a, 4)) : (oVal.Int(a, 2) & 0xF);
-			oCmd.BackgroundColor = c;
-			oList.ShiftN(a, 5);
+			int n = ValExt.Int(a, 1);
+			int c = n == 2 ? Cmd.RgbColor(ValExt.Int(a, 2), ValExt.Int(a, 3), ValExt.Int(a, 4)) : (ValExt.Int(a, 2) & 0xF);
+			Cmd.BackgroundColor = c;
+			ListExt.ShiftN(a, 5);
 		}
 
 		/// <summary>
@@ -364,8 +364,8 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">clr.</param>
 		private static void FrClrH1(IList<string> a) {
-			FrClr = oVal.Int(a, 0) - FRCLRH1B + 8;
-			oCmd.ForegroundColor = (FrClr | Bld) & Lght;
+			FrClr = ValExt.Int(a, 0) - FRCLRH1B + 8;
+			Cmd.ForegroundColor = (FrClr | Bld) & Lght;
 		}
 
 		/// <summary>
@@ -373,8 +373,8 @@ namespace orez.oansi.esc {
 		/// </summary>
 		/// <param name="a">clr.</param>
 		private static void BckClrH1(IList<string> a) {
-			int c = oVal.Int(a, 0) - BCKCLRH1B + 8;
-			oCmd.BackgroundColor = c;
+			int c = ValExt.Int(a, 0) - BCKCLRH1B + 8;
+			Cmd.BackgroundColor = c;
 		}
 		#endregion
 	}

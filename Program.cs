@@ -1,12 +1,12 @@
 ﻿using System;
-using orez.oansi.esc;
+using App.esc;
 
-namespace orez.oansi {
+namespace App {
 	class Program {
 		static void Main(string[] args) {
 			int a = 0;
 			while(a >= 0)
-				a = oC0.Write(null);
+				a = C0.Write(null);
 			Console.ResetColor();
 		}
 	}
